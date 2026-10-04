@@ -199,11 +199,8 @@ Example managed fields:
 | `TargetQuality` | Target quality score |
 | `MaxAvgLatencyMs` | Maximum acceptable average latency |
 
-Add the final screenshot here:
-
-```md
 ![LLM Budget & Performance Manager](powerapps/screenshots/budget-manager-overview.png)
-```
+
 
 Recommended repository structure:
 
