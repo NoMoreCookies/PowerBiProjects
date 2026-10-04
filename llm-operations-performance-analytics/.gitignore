@@ -1,0 +1,19 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Generated data
+*.csv
+
+# Secrets
+.env
+*.env.local
+
+# Power BI temporary files
+*.tmp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
