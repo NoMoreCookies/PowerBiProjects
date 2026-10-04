@@ -150,11 +150,8 @@ The first page provides an executive view of LLM operations:
 - cost-quality trade-off
 - team budget utilization
 
-Add your exported screenshot here:
-
-```md
 ![Executive Overview](screenshots/executive-overview.png)
-```
+
 
 ### LLM Cost & Model Optimization
 
@@ -165,11 +162,7 @@ The second page focuses on optimization opportunities:
 - model performance comparison
 - task-level and team-level drill-down
 
-Add your exported screenshot here:
-
-```md
 ![Optimization Opportunities](screenshots/optimization-opportunities.png)
-```
 
 ## Business insights
 
@@ -278,16 +271,3 @@ The following files should **not** be committed:
 - temporary Power BI files
 
 The `.pbix` report should be stored in `powerbi/` if its file size is suitable for GitHub. If it exceeds GitHub's normal single-file size limit, use Git LFS or publish only the code, documentation, and screenshots.
-
-## Portfolio scope
-
-This project is intended to demonstrate:
-
-- SQL querying and data modelling
-- staging and data-quality handling
-- Power Query transformations
-- Power BI reporting
-- DAX
-- analytical interpretation
-- business-oriented KPI design
-- reproducible local infrastructure with Docker
