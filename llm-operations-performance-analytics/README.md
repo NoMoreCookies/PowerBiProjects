@@ -24,6 +24,8 @@ The analytical questions include:
 - **Docker** — reproducible local SQL Server environment
 - **Power Query** — reporting-layer transformations
 - **Power BI** — semantic model, DAX measures, dashboards
+- **Power Apps** — Canvas App for managing team-level AI budgets and performance targets
+- **Microsoft Lists / SharePoint** — business-managed storage for team budgets and target values
 
 ## Architecture
 
@@ -53,7 +55,18 @@ Python synthetic data generator
             |
             v
         Dashboards
+
+
+Power Apps
+    |
+    v
+Microsoft Lists / SharePoint
+    |
+    v
+Team budgets & performance targets
 ```
+
+The Power Apps component provides a lightweight business interface for maintaining team-level budget and performance targets. Microsoft Lists / SharePoint acts as the editable business-data layer for these settings.
 
 ## Dataset
 
@@ -152,7 +165,6 @@ The first page provides an executive view of LLM operations:
 
 ![Executive Overview](screenshots/executive-overview.png)
 
-
 ### LLM Cost & Model Optimization
 
 The second page focuses on optimization opportunities:
@@ -163,6 +175,45 @@ The second page focuses on optimization opportunities:
 - task-level and team-level drill-down
 
 ![Optimization Opportunities](screenshots/optimization-opportunities.png)
+
+## Power Apps — LLM Budget & Performance Manager
+
+A lightweight **Power Apps Canvas App** was created to manage team-level AI budget and performance targets.
+
+The application allows users to:
+
+- browse business teams,
+- update monthly AI budgets,
+- update target quality values,
+- update maximum acceptable average latency,
+- save changes back to Microsoft Lists / SharePoint.
+
+The app uses the `AI Team Budgets` Microsoft List as its data source.
+
+Example managed fields:
+
+| Field | Description |
+|---|---|
+| `Team` | Business team |
+| `MonthlyBudgetUSD` | Monthly AI budget in USD |
+| `TargetQuality` | Target quality score |
+| `MaxAvgLatencyMs` | Maximum acceptable average latency |
+
+Add the final screenshot here:
+
+```md
+![LLM Budget & Performance Manager](powerapps/screenshots/budget-manager-overview.png)
+```
+
+Recommended repository structure:
+
+```text
+powerapps/
+├── README.md
+├── LLM_Budget_Performance_Manager.msapp   # optional, if exported
+└── screenshots/
+    └── budget-manager-overview.png
+```
 
 ## Business insights
 
@@ -259,6 +310,58 @@ Load:
 - `dbo.TeamBudgets`
 
 Do not load the staging table into the report.
+
+### 6. Power Apps / Microsoft Lists
+
+Create or use a Microsoft List named:
+
+```text
+AI Team Budgets
+```
+
+with the following fields:
+
+```text
+Team
+MonthlyBudgetUSD
+TargetQuality
+MaxAvgLatencyMs
+```
+
+Use the list as the data source for the Power Apps Canvas App.
+
+## Repository structure
+
+```text
+llm-operations-performance-analytics/
+│
+├── README.md
+├── generate_data.py
+├── requirements.txt
+├── docker-compose.yml
+├── run_sql_pipeline.sh
+├── .gitignore
+├── .env.example
+│
+├── sql/
+│   ├── 01_create_schema.sql
+│   ├── 02_load_staging.sql
+│   ├── 03_transform.sql
+│   └── 04_create_budgets.sql
+│
+├── powerbi/
+│   └── LLM_Operations_Performance.pbix
+│
+├── powerapps/
+│   ├── README.md
+│   ├── LLM_Budget_Performance_Manager.msapp
+│   └── screenshots/
+│       └── budget-manager-overview.png
+│
+└── screenshots/
+    ├── executive-overview.png
+    └── optimization-opportunities.png
+```
 
 ## Repository notes
 
